@@ -1,0 +1,2053 @@
+2025-11-30 23:59:50 [info]: 🚀 Server running on http://localhost:3001
+2025-11-30 23:59:50 [info]: 📊 Environment: development
+2025-11-30 23:59:50 [info]: 🔌 WebSocket server ready
+2025-12-01 00:00:10 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:00:10 [info]: 📊 Environment: development
+2025-12-01 00:00:10 [info]: 🔌 WebSocket server ready
+2025-12-01 00:03:46 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:03:46 [info]: 📊 Environment: development
+2025-12-01 00:03:46 [info]: 🔌 WebSocket server ready
+2025-12-01 00:03:52 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:03:52 [info]: 📊 Environment: development
+2025-12-01 00:03:52 [info]: 🔌 WebSocket server ready
+2025-12-01 00:09:07 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:09:07 [info]: 📊 Environment: development
+2025-12-01 00:09:07 [info]: 🔌 WebSocket server ready
+2025-12-01 00:09:47 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:09:47 [info]: 📊 Environment: development
+2025-12-01 00:09:47 [info]: 🔌 WebSocket server ready
+2025-12-01 00:14:45 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:14:45 [info]: 📊 Environment: development
+2025-12-01 00:14:45 [info]: 🔌 WebSocket server ready
+2025-12-01 00:14:50 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:14:50 [info]: 📊 Environment: development
+2025-12-01 00:14:50 [info]: 🔌 WebSocket server ready
+2025-12-01 00:15:05 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:15:05 [info]: 📊 Environment: development
+2025-12-01 00:15:05 [info]: 🔌 WebSocket server ready
+2025-12-01 00:34:05 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:34:05 [info]: 📊 Environment: development
+2025-12-01 00:34:05 [info]: 🔌 WebSocket server ready
+2025-12-01 00:50:50 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:50:50 [info]: 📊 Environment: development
+2025-12-01 00:50:50 [info]: 🔌 WebSocket server ready
+2025-12-01 00:52:21 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:52:21 [info]: 📊 Environment: development
+2025-12-01 00:52:21 [info]: 🔌 WebSocket server ready
+2025-12-01 00:53:57 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:53:57 [info]: 📊 Environment: development
+2025-12-01 00:53:57 [info]: 🔌 WebSocket server ready
+2025-12-01 00:54:59 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:54:59 [info]: 📊 Environment: development
+2025-12-01 00:54:59 [info]: 🔌 WebSocket server ready
+2025-12-01 00:55:19 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 00:55:19 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 00:56:39 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:56:39 [info]: 📊 Environment: development
+2025-12-01 00:56:39 [info]: 🔌 WebSocket server ready
+2025-12-01 00:56:42 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:56:42 [info]: 📊 Environment: development
+2025-12-01 00:56:42 [info]: 🔌 WebSocket server ready
+2025-12-01 00:56:49 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:56:49 [info]: 📊 Environment: development
+2025-12-01 00:56:49 [info]: 🔌 WebSocket server ready
+2025-12-01 00:57:05 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 00:57:05 [info]: 📊 Environment: development
+2025-12-01 00:57:05 [info]: 🔌 WebSocket server ready
+2025-12-01 01:00:06 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 01:00:06 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 01:00:09 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 01:00:09 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 01:00:12 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 01:00:12 [error]: PrismaClientValidationError: 
+Invalid `prisma.usuario.findMany()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:43
+
+  61   where.activo = activo;
+  62 }
+  63 
+→ 64 const usuarios = await prisma.usuario.findMany({
+       where: {
+         tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c"
+       },
+       select: {
+         id: true,
+         email: true,
+         nombre: true,
+         apellido: true,
+         rol: true,
+         telefono: true,
+         ~~~~~~~~
+         activo: true,
+         createdAt: true,
+         updatedAt: true,
+         tenantId: true,
+     ?   password?: true,
+     ?   pin?: true,
+     ?   tenant?: true,
+     ?   ventas?: true,
+     ?   _count?: true
+       },
+       orderBy: {
+         nombre: "asc"
+       }
+     })
+
+Unknown field `telefono` for select statement on model `Usuario`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async UsuarioService.getUsuarios (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/usuario.service.ts:64:22)
+    at async UsuarioController.getAll (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/usuario.controller.ts:38:24)
+2025-12-01 01:01:53 [error]: TypeError: Cannot read properties of undefined (reading 'findFirst')
+    at ProductoService.findById (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:19:49)
+    at ProductoService.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:38:33)
+    at ProductoService.updateProducto (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/producto.service.ts:133:23)
+    at async ProductoController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:82:24)
+2025-12-01 01:02:32 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:02:32 [info]: 📊 Environment: development
+2025-12-01 01:02:32 [info]: 🔌 WebSocket server ready
+2025-12-01 01:02:33 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:02:33 [info]: 📊 Environment: development
+2025-12-01 01:02:33 [info]: 🔌 WebSocket server ready
+2025-12-01 01:02:37 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:02:37 [info]: 📊 Environment: development
+2025-12-01 01:02:37 [info]: 🔌 WebSocket server ready
+2025-12-01 01:02:50 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:02:50 [info]: 📊 Environment: development
+2025-12-01 01:02:50 [info]: 🔌 WebSocket server ready
+2025-12-01 01:02:55 [error]: TypeError: Cannot read properties of undefined (reading 'findFirst')
+    at ProductoService.findById (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:19:49)
+    at ProductoService.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:38:33)
+    at ProductoService.updateProducto (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/producto.service.ts:133:23)
+    at async ProductoController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:82:24)
+2025-12-01 01:03:17 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:03:17 [info]: 📊 Environment: development
+2025-12-01 01:03:17 [info]: 🔌 WebSocket server ready
+2025-12-01 01:03:26 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:03:26 [info]: 📊 Environment: development
+2025-12-01 01:03:26 [info]: 🔌 WebSocket server ready
+2025-12-01 01:04:19 [error]: PrismaClientValidationError: 
+Invalid `any)[this.modelName].update()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:43:49
+
+  40   throw new Error('Registro no encontrado o no pertenece al tenant');
+  41 }
+  42 
+→ 43 return (this.prisma as any)[this.modelName].update({
+       where: {
+         id: "26374b9d-e3b8-48b3-baea-5d47271e23d3"
+       },
+       data: {
+         categoriaId: "633e4645-8b3c-4420-8599-04277dbca2cc",
+         ~~~~~~~~~~~
+         nombre: "Coca Cola 500ml",
+         descripcion: "Gaseosa Coca Cola 500ml",
+         precio: 1200,
+         costo: 600,
+         porcentajeImpuestos: 30,
+         porcentajeBeneficio: 30,
+         porcentajeOtros: 10,
+         calcularPrecioAutomatico: false,
+         stock: 100,
+         stockMinimo: 5,
+         disponible: true,
+         updatedAt: new Date("2025-12-01T04:04:19.478Z"),
+     ?   id?: String | StringFieldUpdateOperationsInput,
+     ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+     ?   tenant?: TenantUpdateOneRequiredWithoutProductosNestedInput,
+     ?   categoria?: CategoriaUpdateOneWithoutProductosNestedInput,
+     ?   itemsVenta?: ItemVentaUpdateManyWithoutProductoNestedInput
+       }
+     })
+
+Unknown argument `categoriaId`. Did you mean `categoria`? Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async ProductoService.updateProducto (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/producto.service.ts:133:12)
+    at async ProductoController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:82:24)
+2025-12-01 01:04:44 [error]: PrismaClientValidationError: 
+Invalid `any)[this.modelName].update()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:43:49
+
+  40   throw new Error('Registro no encontrado o no pertenece al tenant');
+  41 }
+  42 
+→ 43 return (this.prisma as any)[this.modelName].update({
+       where: {
+         id: "26374b9d-e3b8-48b3-baea-5d47271e23d3"
+       },
+       data: {
+         categoriaId: "633e4645-8b3c-4420-8599-04277dbca2cc",
+         ~~~~~~~~~~~
+         nombre: "Coca Cola 500ml",
+         descripcion: "Gaseosa Coca Cola 500ml",
+         precio: 846,
+         costo: 600,
+         porcentajeImpuestos: 30,
+         porcentajeBeneficio: 10,
+         porcentajeOtros: 1,
+         calcularPrecioAutomatico: true,
+         stock: 100,
+         stockMinimo: 20,
+         disponible: true,
+         updatedAt: new Date("2025-12-01T04:04:44.821Z"),
+     ?   id?: String | StringFieldUpdateOperationsInput,
+     ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+     ?   tenant?: TenantUpdateOneRequiredWithoutProductosNestedInput,
+     ?   categoria?: CategoriaUpdateOneWithoutProductosNestedInput,
+     ?   itemsVenta?: ItemVentaUpdateManyWithoutProductoNestedInput
+       }
+     })
+
+Unknown argument `categoriaId`. Did you mean `categoria`? Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async ProductoService.updateProducto (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/producto.service.ts:133:12)
+    at async ProductoController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:82:24)
+2025-12-01 01:05:28 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:05:28 [info]: 📊 Environment: development
+2025-12-01 01:05:28 [info]: 🔌 WebSocket server ready
+2025-12-01 01:13:12 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:13:12 [info]: 📊 Environment: development
+2025-12-01 01:13:12 [info]: 🔌 WebSocket server ready
+2025-12-01 01:18:21 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:18:21 [info]: 📊 Environment: development
+2025-12-01 01:18:21 [info]: 🔌 WebSocket server ready
+2025-12-01 01:19:53 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:19:53 [info]: 📊 Environment: development
+2025-12-01 01:19:53 [info]: 🔌 WebSocket server ready
+2025-12-01 01:26:25 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:27:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 01:27:15 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:27:15 [info]: 📊 Environment: development
+2025-12-01 01:27:15 [info]: 🔌 WebSocket server ready
+2025-12-01 01:27:32 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 01:27:32 [info]: 📊 Environment: development
+2025-12-01 01:27:32 [info]: 🔌 WebSocket server ready
+2025-12-01 01:29:45 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:27:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 01:35:56 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": false,
+    "exact": false,
+    "message": "El precio debe ser mayor a 0",
+    "path": [
+      "precio"
+    ]
+  },
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": false,
+    "exact": false,
+    "message": "El costo debe ser mayor a 0",
+    "path": [
+      "costo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at ProductoController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:34:50)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 01:38:13 [error]: AppError: Token inválido
+2025-12-01 02:26:25 [error]: AppError: No se puede eliminar el ingrediente porque está siendo usado en recetas
+2025-12-01 02:26:27 [error]: AppError: No se puede eliminar el ingrediente porque está siendo usado en recetas
+2025-12-01 02:26:29 [error]: AppError: No se puede eliminar el ingrediente porque está siendo usado en recetas
+2025-12-01 02:26:32 [error]: AppError: No se puede eliminar el ingrediente porque está siendo usado en recetas
+2025-12-01 02:29:24 [error]: PrismaClientValidationError: 
+Invalid `any)[this.modelName].create()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:28:49
+
+  25 }
+  26 
+  27 async create(tenantId: string, data: any): Promise<T> {
+→ 28   return (this.prisma as any)[this.modelName].create({
+         data: {
+           categoriaId: "5bfa03ae-6cb8-47ab-b200-120fff1bfabb",
+           nombre: "Arroz con Pollo",
+           descripcion: "500 gr de Arroz con Pollo a la valenciana",
+           precio: 300,
+           costo: 186.31,
+           porcentajeImpuestos: 21,
+           ~~~~~~~~~~~~~~~~~~~
+           porcentajeBeneficio: 30,
+           porcentajeOtros: 10,
+           calcularPrecioAutomatico: false,
+           stock: 10,
+           stockMinimo: 1,
+           disponible: true,
+           tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c",
+       ?   id?: String,
+       ?   createdAt?: DateTime,
+       ?   updatedAt?: DateTime,
+       ?   itemsVenta?: ItemVentaUncheckedCreateNestedManyWithoutProductoInput,
+       ?   recetas?: RecetaUncheckedCreateNestedManyWithoutProductoInput
+         }
+       })
+
+Unknown argument `porcentajeImpuestos`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async ProductoService.createProducto (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/producto.service.ts:81:12)
+    at async ProductoController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:36:24)
+2025-12-01 02:30:19 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 02:30:19 [info]: 📊 Environment: development
+2025-12-01 02:30:19 [info]: 🔌 WebSocket server ready
+2025-12-01 02:30:43 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 02:30:43 [info]: 📊 Environment: development
+2025-12-01 02:30:43 [info]: 🔌 WebSocket server ready
+2025-12-01 02:33:56 [error]: PrismaClientValidationError: 
+Invalid `any)[this.modelName].create()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/repositories/base.repository.ts:28:49
+
+  25 }
+  26 
+  27 async create(tenantId: string, data: any): Promise<T> {
+→ 28   return (this.prisma as any)[this.modelName].create({
+         data: {
+           categoriaId: "5bfa03ae-6cb8-47ab-b200-120fff1bfabb",
+           nombre: "Arroz con Pollo",
+           descripcion: "550 gr de Arroz a la Valenciana",
+           precio: 304,
+           costo: 188.71,
+           porcentajeImpuestos: 21,
+           ~~~~~~~~~~~~~~~~~~~
+           porcentajeBeneficio: 30,
+           porcentajeOtros: 10,
+           calcularPrecioAutomatico: false,
+           stock: 10,
+           stockMinimo: 1,
+           disponible: true,
+           tenantId: "ddfc7d42-47a1-4d2c-9b94-91696eb1698c",
+       ?   id?: String,
+       ?   createdAt?: DateTime,
+       ?   updatedAt?: DateTime,
+       ?   itemsVenta?: ItemVentaUncheckedCreateNestedManyWithoutProductoInput,
+       ?   recetas?: RecetaUncheckedCreateNestedManyWithoutProductoInput
+         }
+       })
+
+Unknown argument `porcentajeImpuestos`. Available options are marked with ?.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async ProductoService.createProducto (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/producto.service.ts:81:12)
+    at async ProductoController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:36:24)
+2025-12-01 02:34:41 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 02:34:41 [info]: 📊 Environment: development
+2025-12-01 02:34:41 [info]: 🔌 WebSocket server ready
+2025-12-01 02:35:02 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 02:35:02 [info]: 📊 Environment: development
+2025-12-01 02:35:02 [info]: 🔌 WebSocket server ready
+2025-12-01 02:50:17 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:50:17 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:50:20 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:50:20 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:52:55 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:52:55 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:00 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:00 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:15 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:15 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:16 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:16 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:53:59 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 02:53:59 [info]: 📊 Environment: development
+2025-12-01 02:53:59 [info]: 🔌 WebSocket server ready
+2025-12-01 02:54:58 [error]: PrismaClientInitializationError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:54:58 [error]: PrismaClientInitializationError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:55:01 [error]: PrismaClientInitializationError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:55:01 [error]: PrismaClientInitializationError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:55:15 [error]: PrismaClientInitializationError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:55:15 [error]: PrismaClientInitializationError: 
+Invalid `prisma.tenant.findUnique()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:40
+
+  29 }
+  30 
+  31 // Verificar que el tenant existe y está activo
+→ 32 const tenant = await prisma.tenant.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async tenantMiddleware (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/middleware/tenant.middleware.ts:32:20)
+2025-12-01 02:57:54 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 02:57:54 [info]: 📊 Environment: development
+2025-12-01 02:57:54 [info]: 🔌 WebSocket server ready
+2025-12-01 02:59:52 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": false,
+    "exact": false,
+    "message": "El costo debe ser mayor a 0",
+    "path": [
+      "costo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:27:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 02:59:59 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": false,
+    "exact": false,
+    "message": "El costo debe ser mayor a 0",
+    "path": [
+      "costo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:27:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 03:05:26 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:05:26 [info]: 📊 Environment: development
+2025-12-01 03:05:26 [info]: 🔌 WebSocket server ready
+2025-12-01 03:06:13 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:06:13 [info]: 📊 Environment: development
+2025-12-01 03:06:13 [info]: 🔌 WebSocket server ready
+2025-12-01 03:06:25 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:06:25 [info]: 📊 Environment: development
+2025-12-01 03:06:25 [info]: 🔌 WebSocket server ready
+2025-12-01 03:06:30 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:06:30 [info]: 📊 Environment: development
+2025-12-01 03:06:30 [info]: 🔌 WebSocket server ready
+2025-12-01 03:06:45 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:06:45 [info]: 📊 Environment: development
+2025-12-01 03:06:45 [info]: 🔌 WebSocket server ready
+2025-12-01 03:07:00 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:07:00 [info]: 📊 Environment: development
+2025-12-01 03:07:00 [info]: 🔌 WebSocket server ready
+2025-12-01 03:07:15 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:07:15 [info]: 📊 Environment: development
+2025-12-01 03:07:15 [info]: 🔌 WebSocket server ready
+2025-12-01 03:07:30 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:07:30 [info]: 📊 Environment: development
+2025-12-01 03:07:30 [info]: 🔌 WebSocket server ready
+2025-12-01 03:07:50 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:07:50 [info]: 📊 Environment: development
+2025-12-01 03:07:50 [info]: 🔌 WebSocket server ready
+2025-12-01 03:08:01 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:08:01 [info]: 📊 Environment: development
+2025-12-01 03:08:01 [info]: 🔌 WebSocket server ready
+2025-12-01 03:18:52 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:18:52 [info]: 📊 Environment: development
+2025-12-01 03:18:52 [info]: 🔌 WebSocket server ready
+2025-12-01 03:19:27 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:19:27 [info]: 📊 Environment: development
+2025-12-01 03:19:27 [info]: 🔌 WebSocket server ready
+2025-12-01 03:23:33 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:23:33 [info]: 📊 Environment: development
+2025-12-01 03:23:33 [info]: 🔌 WebSocket server ready
+2025-12-01 03:23:47 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 03:23:47 [info]: 📊 Environment: development
+2025-12-01 03:23:47 [info]: 🔌 WebSocket server ready
+2025-12-01 17:16:00 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 17:16:00 [info]: 📊 Environment: development
+2025-12-01 17:16:00 [info]: 🔌 WebSocket server ready
+2025-12-01 17:23:47 [error]: AppError: Email o contraseña incorrectos
+2025-12-01 18:05:49 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 18:05:49 [info]: 📊 Environment: development
+2025-12-01 18:05:49 [info]: 🔌 WebSocket server ready
+2025-12-01 18:06:49 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": false,
+    "exact": false,
+    "message": "El costo debe ser mayor a 0",
+    "path": [
+      "costo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:27:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 18:12:13 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": false,
+    "exact": false,
+    "message": "El costo debe ser mayor a 0",
+    "path": [
+      "costo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:27:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-01 18:13:24 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 18:13:24 [info]: 📊 Environment: development
+2025-12-01 18:13:24 [info]: 🔌 WebSocket server ready
+2025-12-01 18:16:05 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 18:16:05 [info]: 📊 Environment: development
+2025-12-01 18:16:05 [info]: 🔌 WebSocket server ready
+2025-12-01 18:20:13 [error]: AppError: Ya existe un ingrediente con ese nombre
+2025-12-01 18:23:56 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 18:23:56 [info]: 📊 Environment: development
+2025-12-01 18:23:56 [info]: 🔌 WebSocket server ready
+2025-12-01 18:24:39 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 18:24:39 [info]: 📊 Environment: development
+2025-12-01 18:24:39 [info]: 🔌 WebSocket server ready
+2025-12-01 18:30:31 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 18:30:31 [info]: 📊 Environment: development
+2025-12-01 18:30:31 [info]: 🔌 WebSocket server ready
+2025-12-01 18:31:36 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:36 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:39 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:39 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:43 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:43 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:48 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:48 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:50 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:50 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:52 [error]: AppError: Tenant no encontrado
+2025-12-01 18:31:52 [error]: AppError: Tenant no encontrado
+2025-12-01 18:32:53 [error]: AppError: Email o contraseña incorrectos
+2025-12-01 18:36:34 [error]: AppError: Tenant no encontrado
+2025-12-01 18:36:34 [error]: AppError: Tenant no encontrado
+2025-12-01 18:38:36 [error]: AppError: Tenant no encontrado
+2025-12-01 18:38:36 [error]: AppError: Tenant no encontrado
+2025-12-01 18:38:42 [error]: AppError: Tenant no encontrado
+2025-12-01 18:38:42 [error]: AppError: Tenant no encontrado
+2025-12-01 18:39:22 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 18:39:24 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 18:41:29 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 18:58:44 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 19:09:01 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:09:01 [info]: 📊 Environment: development
+2025-12-01 19:09:01 [info]: 🔌 WebSocket server ready
+2025-12-01 19:09:05 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:09:05 [info]: 📊 Environment: development
+2025-12-01 19:09:05 [info]: 🔌 WebSocket server ready
+2025-12-01 19:09:14 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:09:14 [info]: 📊 Environment: development
+2025-12-01 19:09:14 [info]: 🔌 WebSocket server ready
+2025-12-01 19:09:24 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:09:24 [info]: 📊 Environment: development
+2025-12-01 19:09:24 [info]: 🔌 WebSocket server ready
+2025-12-01 19:31:35 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:31:35 [info]: 📊 Environment: development
+2025-12-01 19:31:35 [info]: 🔌 WebSocket server ready
+2025-12-01 19:31:53 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:31:53 [info]: 📊 Environment: development
+2025-12-01 19:31:53 [info]: 🔌 WebSocket server ready
+2025-12-01 19:38:24 [error]: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 0,
+    "type": "number",
+    "inclusive": true,
+    "exact": false,
+    "message": "Number must be greater than or equal to 0",
+    "path": [
+      "stockMinimo"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 19:49:37 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:49:37 [info]: 📊 Environment: development
+2025-12-01 19:49:37 [info]: 🔌 WebSocket server ready
+2025-12-01 19:49:58 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:49:58 [info]: 📊 Environment: development
+2025-12-01 19:49:58 [info]: 🔌 WebSocket server ready
+2025-12-01 19:51:32 [error]: ZodError: [
+  {
+    "received": "MAPLE",
+    "code": "invalid_enum_value",
+    "options": [
+      "KILOGRAMO",
+      "GRAMO",
+      "LITRO",
+      "MILILITRO",
+      "UNIDAD",
+      "PORCION"
+    ],
+    "path": [
+      "unidad"
+    ],
+    "message": "Invalid enum value. Expected 'KILOGRAMO' | 'GRAMO' | 'LITRO' | 'MILILITRO' | 'UNIDAD' | 'PORCION', received 'MAPLE'"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 19:53:52 [error]: ZodError: [
+  {
+    "received": "MAPLE",
+    "code": "invalid_enum_value",
+    "options": [
+      "KILOGRAMO",
+      "GRAMO",
+      "LITRO",
+      "MILILITRO",
+      "UNIDAD",
+      "PORCION"
+    ],
+    "path": [
+      "unidad"
+    ],
+    "message": "Invalid enum value. Expected 'KILOGRAMO' | 'GRAMO' | 'LITRO' | 'MILILITRO' | 'UNIDAD' | 'PORCION', received 'MAPLE'"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 19:54:53 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:54:53 [info]: 📊 Environment: development
+2025-12-01 19:54:53 [info]: 🔌 WebSocket server ready
+2025-12-01 19:55:20 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:55:20 [info]: 📊 Environment: development
+2025-12-01 19:55:20 [info]: 🔌 WebSocket server ready
+2025-12-01 19:55:31 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:55:31 [info]: 📊 Environment: development
+2025-12-01 19:55:31 [info]: 🔌 WebSocket server ready
+2025-12-01 19:56:25 [error]: ZodError: [
+  {
+    "received": "MAPLE",
+    "code": "invalid_enum_value",
+    "options": [
+      "KILOGRAMO",
+      "GRAMO",
+      "LITRO",
+      "MILILITRO",
+      "UNIDAD",
+      "PORCION"
+    ],
+    "path": [
+      "unidad"
+    ],
+    "message": "Invalid enum value. Expected 'KILOGRAMO' | 'GRAMO' | 'LITRO' | 'MILILITRO' | 'UNIDAD' | 'PORCION', received 'MAPLE'"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at IngredienteController.update (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/ingrediente.controller.ts:72:53)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:365:14)
+    at param (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:376:14)
+2025-12-01 19:57:38 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:57:38 [info]: 📊 Environment: development
+2025-12-01 19:57:38 [info]: 🔌 WebSocket server ready
+2025-12-01 19:57:48 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:57:48 [info]: 📊 Environment: development
+2025-12-01 19:57:48 [info]: 🔌 WebSocket server ready
+2025-12-01 19:57:53 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 19:57:53 [info]: 📊 Environment: development
+2025-12-01 19:57:53 [info]: 🔌 WebSocket server ready
+2025-12-01 20:30:57 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 20:30:57 [info]: 📊 Environment: development
+2025-12-01 20:30:57 [info]: 🔌 WebSocket server ready
+2025-12-01 20:31:26 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 20:31:26 [info]: 📊 Environment: development
+2025-12-01 20:31:26 [info]: 🔌 WebSocket server ready
+2025-12-01 20:50:42 [info]: 🚀 Server running on http://localhost:3001
+2025-12-01 20:50:42 [info]: 📊 Environment: development
+2025-12-01 20:50:42 [info]: 🔌 WebSocket server ready
+2025-12-02 12:04:07 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 12:04:07 [info]: 📊 Environment: development
+2025-12-02 12:04:07 [info]: 🔌 WebSocket server ready
+2025-12-02 12:28:55 [error]: AppError: Ya existe un ingrediente con ese nombre
+2025-12-02 12:34:51 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 12:34:51 [info]: 📊 Environment: development
+2025-12-02 12:34:51 [info]: 🔌 WebSocket server ready
+2025-12-02 12:35:35 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 12:35:35 [info]: 📊 Environment: development
+2025-12-02 12:35:35 [info]: 🔌 WebSocket server ready
+2025-12-02 12:35:54 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 12:35:54 [info]: 📊 Environment: development
+2025-12-02 12:35:54 [info]: 🔌 WebSocket server ready
+2025-12-02 12:41:17 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 12:41:17 [info]: 📊 Environment: development
+2025-12-02 12:41:17 [info]: 🔌 WebSocket server ready
+2025-12-02 12:42:13 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 12:42:13 [info]: 📊 Environment: development
+2025-12-02 12:42:13 [info]: 🔌 WebSocket server ready
+2025-12-02 12:50:14 [error]: AppError: Email o contraseña incorrectos
+2025-12-02 12:52:10 [error]: AppError: Email o contraseña incorrectos
+2025-12-02 12:52:21 [error]: AppError: Email o contraseña incorrectos
+2025-12-02 13:35:58 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:35:58 [info]: 📊 Environment: development
+2025-12-02 13:35:58 [info]: 🔌 WebSocket server ready
+2025-12-02 13:38:07 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:38:07 [info]: 📊 Environment: development
+2025-12-02 13:38:07 [info]: 🔌 WebSocket server ready
+2025-12-02 13:38:21 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:38:21 [info]: 📊 Environment: development
+2025-12-02 13:38:21 [info]: 🔌 WebSocket server ready
+2025-12-02 13:38:34 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:38:34 [info]: 📊 Environment: development
+2025-12-02 13:38:34 [info]: 🔌 WebSocket server ready
+2025-12-02 13:38:51 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:38:51 [info]: 📊 Environment: development
+2025-12-02 13:38:51 [info]: 🔌 WebSocket server ready
+2025-12-02 13:41:28 [error]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      0,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      1,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at VentaController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/venta.controller.ts:42:47)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-02 13:41:32 [error]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      0,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      1,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at VentaController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/venta.controller.ts:42:47)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-02 13:43:38 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:43:38 [info]: 📊 Environment: development
+2025-12-02 13:43:38 [info]: 🔌 WebSocket server ready
+2025-12-02 13:44:42 [error]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      0,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      1,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at VentaController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/venta.controller.ts:42:47)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-02 13:45:12 [error]: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "items",
+      0,
+      "precio"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at VentaController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/venta.controller.ts:42:47)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-02 13:46:36 [error]: PrismaClientValidationError: 
+Invalid `tx.venta.create()` invocation in
+/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/venta.service.ts:74:41
+
+  71 const numero = (ultimaVenta?.numero || 0) + 1;
+  72 
+  73 // Crear la venta
+→ 74 const nuevaVenta = await tx.venta.create({
+       data: {
+         tenantId: "2ab5c4f6-5441-4114-9e57-0bd0d614f4d9",
+         usuarioId: undefined,
+         numero: 1,
+         clienteId: undefined,
+         mesaId: undefined,
+         tipo: "MOSTRADOR",
+         estado: "CONFIRMADA",
+         compradorNombre: "juhbu",
+         compradorTelefono: "hgu",
+         direccionEntrega: undefined,
+         estadoPago: "PENDIENTE",
+         subtotal: 1492,
+         descuento: 0,
+         propina: 0,
+         total: 1492,
+     +   createdBy: String
+       }
+     })
+
+Argument `createdBy` is missing.
+    at wn (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:29:1363)
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6958)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async <anonymous> (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/venta.service.ts:74:26)
+    at async Proxy._transactionWithCallback (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:8000)
+    at async VentaService.createVenta (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/venta.service.ts:65:19)
+    at async VentaController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/venta.controller.ts:44:21)
+2025-12-02 13:48:19 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:48:19 [info]: 📊 Environment: development
+2025-12-02 13:48:19 [info]: 🔌 WebSocket server ready
+2025-12-02 13:49:06 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 13:49:06 [info]: 📊 Environment: development
+2025-12-02 13:49:06 [info]: 🔌 WebSocket server ready
+2025-12-02 15:14:00 [error]: AppError: Este ingrediente ya está en la receta
+2025-12-02 17:16:00 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:16:00 [info]: 📊 Environment: development
+2025-12-02 17:16:00 [info]: 🔌 WebSocket server ready
+2025-12-02 17:17:18 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:17:18 [info]: 📊 Environment: development
+2025-12-02 17:17:18 [info]: 🔌 WebSocket server ready
+2025-12-02 17:17:31 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:17:31 [info]: 📊 Environment: development
+2025-12-02 17:17:31 [info]: 🔌 WebSocket server ready
+2025-12-02 17:17:39 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:17:39 [info]: 📊 Environment: development
+2025-12-02 17:17:39 [info]: 🔌 WebSocket server ready
+2025-12-02 17:18:09 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:18:09 [info]: 📊 Environment: development
+2025-12-02 17:18:09 [info]: 🔌 WebSocket server ready
+2025-12-02 17:18:28 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:18:28 [info]: 📊 Environment: development
+2025-12-02 17:18:28 [info]: 🔌 WebSocket server ready
+2025-12-02 17:28:13 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 17:28:13 [info]: 📊 Environment: development
+2025-12-02 17:28:13 [info]: 🔌 WebSocket server ready
+2025-12-02 18:01:21 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 18:01:21 [info]: 📊 Environment: development
+2025-12-02 18:01:21 [info]: 🔌 WebSocket server ready
+2025-12-02 18:06:31 [error]: ZodError: [
+  {
+    "validation": "uuid",
+    "code": "invalid_string",
+    "message": "ID de categoría inválido",
+    "path": [
+      "categoriaId"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at ProductoController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/producto.controller.ts:38:50)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-02 21:16:55 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:16:55 [info]: 📊 Environment: development
+2025-12-02 21:16:55 [info]: 🔌 WebSocket server ready
+2025-12-02 21:18:34 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:18:34 [info]: 📊 Environment: development
+2025-12-02 21:18:34 [info]: 🔌 WebSocket server ready
+2025-12-02 21:19:35 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:19:35 [info]: 📊 Environment: development
+2025-12-02 21:19:35 [info]: 🔌 WebSocket server ready
+2025-12-02 21:21:07 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:21:07 [info]: 📊 Environment: development
+2025-12-02 21:21:07 [info]: 🔌 WebSocket server ready
+2025-12-02 21:21:15 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:21:15 [info]: 📊 Environment: development
+2025-12-02 21:21:15 [info]: 🔌 WebSocket server ready
+2025-12-02 21:21:41 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:21:41 [info]: 📊 Environment: development
+2025-12-02 21:21:41 [info]: 🔌 WebSocket server ready
+2025-12-02 21:28:23 [info]: 🚀 Server running on http://localhost:3001
+2025-12-02 21:28:23 [info]: 📊 Environment: development
+2025-12-02 21:28:23 [info]: 🔌 WebSocket server ready
+2025-12-04 14:46:30 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 14:46:30 [info]: 📊 Environment: development
+2025-12-04 14:46:30 [info]: 🔌 WebSocket server ready
+2025-12-04 14:48:39 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 14:48:39 [info]: 📊 Environment: development
+2025-12-04 14:48:39 [info]: 🔌 WebSocket server ready
+2025-12-04 14:48:45 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 14:48:45 [info]: 📊 Environment: development
+2025-12-04 14:48:45 [info]: 🔌 WebSocket server ready
+2025-12-04 14:48:59 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 14:48:59 [info]: 📊 Environment: development
+2025-12-04 14:48:59 [info]: 🔌 WebSocket server ready
+2025-12-04 15:26:03 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 15:26:03 [info]: 📊 Environment: development
+2025-12-04 15:26:03 [info]: 🔌 WebSocket server ready
+2025-12-04 15:26:17 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 15:26:17 [info]: 📊 Environment: development
+2025-12-04 15:26:17 [info]: 🔌 WebSocket server ready
+2025-12-04 15:32:53 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 15:32:53 [info]: 📊 Environment: development
+2025-12-04 15:32:53 [info]: 🔌 WebSocket server ready
+2025-12-04 15:35:31 [error]: AppError: Email o contraseña incorrectos
+2025-12-04 17:36:32 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:36:32 [info]: 📊 Environment: development
+2025-12-04 17:36:32 [info]: 🔌 WebSocket server ready
+2025-12-04 17:36:45 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:36:45 [info]: 📊 Environment: development
+2025-12-04 17:36:45 [info]: 🔌 WebSocket server ready
+2025-12-04 17:38:54 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:38:54 [info]: 📊 Environment: development
+2025-12-04 17:38:54 [info]: 🔌 WebSocket server ready
+2025-12-04 17:39:10 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:39:10 [info]: 📊 Environment: development
+2025-12-04 17:39:10 [info]: 🔌 WebSocket server ready
+2025-12-04 17:39:45 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:39:45 [info]: 📊 Environment: development
+2025-12-04 17:39:45 [info]: 🔌 WebSocket server ready
+2025-12-04 17:47:24 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:47:24 [info]: 📊 Environment: development
+2025-12-04 17:47:24 [info]: 🔌 WebSocket server ready
+2025-12-04 17:48:25 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:48:25 [info]: 📊 Environment: development
+2025-12-04 17:48:25 [info]: 🔌 WebSocket server ready
+2025-12-04 17:48:36 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:48:36 [info]: 📊 Environment: development
+2025-12-04 17:48:36 [info]: 🔌 WebSocket server ready
+2025-12-04 17:48:52 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:48:52 [info]: 📊 Environment: development
+2025-12-04 17:48:52 [info]: 🔌 WebSocket server ready
+2025-12-04 17:49:02 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:49:02 [info]: 📊 Environment: development
+2025-12-04 17:49:02 [info]: 🔌 WebSocket server ready
+2025-12-04 17:49:13 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:49:13 [info]: 📊 Environment: development
+2025-12-04 17:49:13 [info]: 🔌 WebSocket server ready
+2025-12-04 17:49:32 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:49:32 [info]: 📊 Environment: development
+2025-12-04 17:49:32 [info]: 🔌 WebSocket server ready
+2025-12-04 17:49:55 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:49:55 [info]: 📊 Environment: development
+2025-12-04 17:49:55 [info]: 🔌 WebSocket server ready
+2025-12-04 17:50:10 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 17:50:10 [info]: 📊 Environment: development
+2025-12-04 17:50:10 [info]: 🔌 WebSocket server ready
+2025-12-04 18:54:56 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:54:56 [info]: 📊 Environment: development
+2025-12-04 18:54:56 [info]: 🔌 WebSocket server ready
+2025-12-04 18:55:20 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:55:20 [info]: 📊 Environment: development
+2025-12-04 18:55:20 [info]: 🔌 WebSocket server ready
+2025-12-04 18:55:38 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:55:38 [info]: 📊 Environment: development
+2025-12-04 18:55:38 [info]: 🔌 WebSocket server ready
+2025-12-04 18:55:52 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:55:52 [info]: 📊 Environment: development
+2025-12-04 18:55:52 [info]: 🔌 WebSocket server ready
+2025-12-04 18:56:09 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:56:09 [info]: 📊 Environment: development
+2025-12-04 18:56:09 [info]: 🔌 WebSocket server ready
+2025-12-04 18:56:24 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:56:24 [info]: 📊 Environment: development
+2025-12-04 18:56:24 [info]: 🔌 WebSocket server ready
+2025-12-04 18:58:47 [info]: 🚀 Server running on http://localhost:3001
+2025-12-04 18:58:47 [info]: 📊 Environment: development
+2025-12-04 18:58:47 [info]: 🔌 WebSocket server ready
+2025-12-04 18:59:10 [error]: AppError: Tenant no encontrado
+2025-12-04 18:59:10 [error]: AppError: Tenant no encontrado
+2025-12-04 18:59:10 [error]: AppError: Tenant no encontrado
+2025-12-04 18:59:10 [error]: AppError: Tenant no encontrado
+2025-12-04 18:59:10 [error]: AppError: Tenant no encontrado
+2025-12-04 18:59:10 [error]: AppError: Tenant no encontrado
+2025-12-04 19:00:38 [error]: AppError: Tenant no encontrado
+2025-12-04 19:00:38 [error]: AppError: Tenant no encontrado
+2025-12-04 19:00:38 [error]: AppError: Tenant no encontrado
+2025-12-04 19:00:38 [error]: AppError: Tenant no encontrado
+2025-12-04 19:00:38 [error]: AppError: Tenant no encontrado
+2025-12-04 19:00:38 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:06 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:06 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:06 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:06 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:06 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:06 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:01:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:00 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:00 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:00 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:00 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:00 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:00 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:19 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:19 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:19 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:19 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:35 [error]: AppError: Tenant no encontrado
+2025-12-04 19:02:35 [error]: AppError: Tenant no encontrado
+2025-12-04 22:14:22 [error]: AppError: Tenant no encontrado
+2025-12-04 22:14:22 [error]: AppError: Tenant no encontrado
+2025-12-04 22:14:22 [error]: AppError: Tenant no encontrado
+2025-12-04 22:14:22 [error]: AppError: Tenant no encontrado
+2025-12-04 22:15:02 [error]: AppError: Tenant no encontrado
+2025-12-04 22:15:02 [error]: AppError: Tenant no encontrado
+2025-12-04 22:15:02 [error]: AppError: Tenant no encontrado
+2025-12-04 22:15:02 [error]: AppError: Tenant no encontrado
+2025-12-04 22:16:54 [error]: AppError: Tenant no encontrado
+2025-12-04 22:16:58 [error]: AppError: Tenant no encontrado
+2025-12-04 22:22:23 [error]: AppError: Tenant no encontrado
+2025-12-04 22:22:23 [error]: AppError: Tenant no encontrado
+2025-12-04 22:22:23 [error]: AppError: Tenant no encontrado
+2025-12-04 22:22:23 [error]: AppError: Tenant no encontrado
+2025-12-05 18:00:13 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 18:00:13 [info]: 📊 Environment: development
+2025-12-05 18:00:13 [info]: 🔌 WebSocket server ready
+2025-12-05 18:06:20 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 18:06:20 [info]: 📊 Environment: development
+2025-12-05 18:06:20 [info]: 🔌 WebSocket server ready
+2025-12-05 18:15:51 [error]: AppError: Tenant no encontrado
+2025-12-05 18:15:51 [error]: AppError: Tenant no encontrado
+2025-12-05 18:15:51 [error]: AppError: Tenant no encontrado
+2025-12-05 18:15:51 [error]: AppError: Tenant no encontrado
+2025-12-05 18:16:01 [error]: AppError: Tenant no encontrado
+2025-12-05 18:16:01 [error]: AppError: Tenant no encontrado
+2025-12-05 18:16:01 [error]: AppError: Tenant no encontrado
+2025-12-05 18:16:01 [error]: AppError: Tenant no encontrado
+2025-12-05 18:16:28 [error]: AppError: Tenant no encontrado
+2025-12-05 18:17:51 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 18:17:51 [info]: 📊 Environment: development
+2025-12-05 18:17:51 [info]: 🔌 WebSocket server ready
+2025-12-05 18:18:19 [error]: AppError: Token no proporcionado
+2025-12-05 18:18:32 [error]: AppError: Token inválido
+2025-12-05 18:19:27 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:27 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:27 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:27 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:28 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:28 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:28 [error]: AppError: Tenant no encontrado
+2025-12-05 18:19:28 [error]: AppError: Tenant no encontrado
+2025-12-05 18:20:40 [error]: AppError: Token no proporcionado
+2025-12-05 18:20:55 [error]: AppError: Token no proporcionado
+2025-12-05 18:31:13 [error]: AppError: Tenant no encontrado
+2025-12-05 18:31:13 [error]: AppError: Tenant no encontrado
+2025-12-05 18:31:13 [error]: AppError: Tenant no encontrado
+2025-12-05 18:31:13 [error]: AppError: Tenant no encontrado
+2025-12-05 18:32:10 [error]: AppError: Token no proporcionado
+2025-12-05 18:32:45 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 18:32:45 [info]: 📊 Environment: development
+2025-12-05 18:32:45 [info]: 🔌 WebSocket server ready
+2025-12-05 18:33:19 [error]: AppError: Token no proporcionado
+2025-12-05 18:33:58 [error]: AppError: Token inválido
+2025-12-05 18:36:48 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 18:36:48 [info]: 📊 Environment: development
+2025-12-05 18:36:48 [info]: 🔌 WebSocket server ready
+2025-12-05 18:42:10 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 18:42:10 [info]: 📊 Environment: development
+2025-12-05 18:42:10 [info]: 🔌 WebSocket server ready
+2025-12-05 23:51:48 [info]: 🚀 Server running on http://localhost:3001
+2025-12-05 23:51:48 [info]: 📊 Environment: development
+2025-12-05 23:51:48 [info]: 🔌 WebSocket server ready
+2025-12-06 18:00:43 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:00:43 [info]: 📊 Environment: development
+2025-12-06 18:00:43 [info]: 🔌 WebSocket server ready
+2025-12-06 18:40:00 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:40:00 [info]: 📊 Environment: development
+2025-12-06 18:40:00 [info]: 🔌 WebSocket server ready
+2025-12-06 18:40:11 [error]: AppError: Tenant no encontrado
+2025-12-06 18:40:11 [error]: AppError: Tenant no encontrado
+2025-12-06 18:40:11 [error]: AppError: Tenant no encontrado
+2025-12-06 18:40:11 [error]: AppError: Tenant no encontrado
+2025-12-06 18:41:44 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:41:44 [info]: 📊 Environment: development
+2025-12-06 18:41:44 [info]: 🔌 WebSocket server ready
+2025-12-06 18:42:19 [error]: AppError: Token inválido
+2025-12-06 18:42:39 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:42:39 [info]: 📊 Environment: development
+2025-12-06 18:42:39 [info]: 🔌 WebSocket server ready
+2025-12-06 18:42:49 [error]: AppError: Token inválido
+2025-12-06 18:42:49 [error]: AppError: Token inválido
+2025-12-06 18:43:28 [error]: AppError: Tenant no encontrado
+2025-12-06 18:43:28 [error]: AppError: Tenant no encontrado
+2025-12-06 18:43:28 [error]: AppError: Tenant no encontrado
+2025-12-06 18:43:28 [error]: AppError: Tenant no encontrado
+2025-12-06 18:43:46 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:05 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:05 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:05 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:05 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:16 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:16 [error]: AppError: Tenant no encontrado
+2025-12-06 18:44:37 [error]: AppError: Email o contraseña incorrectos
+2025-12-06 18:46:14 [error]: AppError: Email o contraseña incorrectos
+2025-12-06 18:46:32 [error]: AppError: Email o contraseña incorrectos
+2025-12-06 18:46:48 [error]: AppError: Email o contraseña incorrectos
+2025-12-06 18:47:43 [error]: ZodError: [
+  {
+    "code": "invalid_string",
+    "validation": "datetime",
+    "message": "Invalid datetime",
+    "path": [
+      "fechaCompra"
+    ]
+  }
+]
+    at get error (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:45:31)
+    at ZodObject.parse (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/zod/v3/types.cjs:120:22)
+    at CompraController.create (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/compra.controller.ts:55:39)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/layer.js:95:5)
+    at /Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:346:12)
+    at next (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/express/lib/router/index.js:280:10)
+2025-12-06 18:48:58 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:48:58 [info]: 📊 Environment: development
+2025-12-06 18:48:58 [info]: 🔌 WebSocket server ready
+2025-12-06 18:49:08 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:49:08 [info]: 📊 Environment: development
+2025-12-06 18:49:08 [info]: 🔌 WebSocket server ready
+2025-12-06 18:49:11 [info]: 🚀 Server running on http://localhost:3001
+2025-12-06 18:49:11 [info]: 📊 Environment: development
+2025-12-06 18:49:11 [info]: 🔌 WebSocket server ready
+2025-12-08 17:04:44 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:04:44 [info]: 📊 Environment: development
+2025-12-08 17:04:44 [info]: 🔌 WebSocket server ready
+2025-12-08 17:06:27 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:06:27 [info]: 📊 Environment: development
+2025-12-08 17:06:27 [info]: 🔌 WebSocket server ready
+2025-12-08 17:06:31 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:06:31 [info]: 📊 Environment: development
+2025-12-08 17:06:31 [info]: 🔌 WebSocket server ready
+2025-12-08 17:07:01 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:07:01 [info]: 📊 Environment: development
+2025-12-08 17:07:01 [info]: 🔌 WebSocket server ready
+2025-12-08 17:07:23 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:07:23 [info]: 📊 Environment: development
+2025-12-08 17:07:23 [info]: 🔌 WebSocket server ready
+2025-12-08 17:40:35 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:40:35 [info]: 📊 Environment: development
+2025-12-08 17:40:35 [info]: 🔌 WebSocket server ready
+2025-12-08 17:41:38 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "tenant_id" does not exist`
+    at $n.handleRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:7315)
+    at $n.handleAndLogRequestError (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/Volumes/Wizarding/Proyectos/gastrodash1/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async Promise.all (index 3)
+    at async ArticuloService.getEstadisticas (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/services/articulo.service.ts:380:9)
+    at async getEstadisticas (/Volumes/Wizarding/Proyectos/gastrodash1/backend/src/controllers/articulo.controller.ts:224:28)
+2025-12-08 17:41:56 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:41:56 [info]: 📊 Environment: development
+2025-12-08 17:41:56 [info]: 🔌 WebSocket server ready
+2025-12-08 17:42:10 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:42:10 [info]: 📊 Environment: development
+2025-12-08 17:42:10 [info]: 🔌 WebSocket server ready
+2025-12-08 17:43:09 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 17:43:09 [info]: 📊 Environment: development
+2025-12-08 17:43:09 [info]: 🔌 WebSocket server ready
+2025-12-08 18:39:15 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 18:39:15 [info]: 📊 Environment: development
+2025-12-08 18:39:15 [info]: 🔌 WebSocket server ready
+2025-12-08 18:39:38 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 18:39:38 [info]: 📊 Environment: development
+2025-12-08 18:39:38 [info]: 🔌 WebSocket server ready
+2025-12-08 19:03:28 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:03:28 [info]: 📊 Environment: development
+2025-12-08 19:03:28 [info]: 🔌 WebSocket server ready
+2025-12-08 19:03:43 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:03:43 [info]: 📊 Environment: development
+2025-12-08 19:03:43 [info]: 🔌 WebSocket server ready
+2025-12-08 19:04:02 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:04:02 [info]: 📊 Environment: development
+2025-12-08 19:04:02 [info]: 🔌 WebSocket server ready
+2025-12-08 19:06:12 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:06:12 [info]: 📊 Environment: development
+2025-12-08 19:06:12 [info]: 🔌 WebSocket server ready
+2025-12-08 19:11:03 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:11:03 [info]: 📊 Environment: development
+2025-12-08 19:11:03 [info]: 🔌 WebSocket server ready
+2025-12-08 19:11:15 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:11:15 [info]: 📊 Environment: development
+2025-12-08 19:11:15 [info]: 🔌 WebSocket server ready
+2025-12-08 19:25:51 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:25:51 [info]: 📊 Environment: development
+2025-12-08 19:25:51 [info]: 🔌 WebSocket server ready
+2025-12-08 19:26:07 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:26:07 [info]: 📊 Environment: development
+2025-12-08 19:26:07 [info]: 🔌 WebSocket server ready
+2025-12-08 19:26:46 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:26:46 [info]: 📊 Environment: development
+2025-12-08 19:26:46 [info]: 🔌 WebSocket server ready
+2025-12-08 19:27:12 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:27:12 [info]: 📊 Environment: development
+2025-12-08 19:27:12 [info]: 🔌 WebSocket server ready
+2025-12-08 19:47:18 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:47:18 [info]: 📊 Environment: development
+2025-12-08 19:47:18 [info]: 🔌 WebSocket server ready
+2025-12-08 19:47:35 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:47:35 [info]: 📊 Environment: development
+2025-12-08 19:47:35 [info]: 🔌 WebSocket server ready
+2025-12-08 19:47:48 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:47:48 [info]: 📊 Environment: development
+2025-12-08 19:47:48 [info]: 🔌 WebSocket server ready
+2025-12-08 19:47:54 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:47:54 [info]: 📊 Environment: development
+2025-12-08 19:47:54 [info]: 🔌 WebSocket server ready
+2025-12-08 19:48:14 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:48:14 [info]: 📊 Environment: development
+2025-12-08 19:48:14 [info]: 🔌 WebSocket server ready
+2025-12-08 19:48:27 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 19:48:27 [info]: 📊 Environment: development
+2025-12-08 19:48:27 [info]: 🔌 WebSocket server ready
+2025-12-08 20:08:14 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:08:14 [info]: 📊 Environment: development
+2025-12-08 20:08:14 [info]: 🔌 WebSocket server ready
+2025-12-08 20:08:40 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:08:40 [info]: 📊 Environment: development
+2025-12-08 20:08:40 [info]: 🔌 WebSocket server ready
+2025-12-08 20:09:37 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:09:37 [info]: 📊 Environment: development
+2025-12-08 20:09:37 [info]: 🔌 WebSocket server ready
+2025-12-08 20:09:55 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:09:55 [info]: 📊 Environment: development
+2025-12-08 20:09:55 [info]: 🔌 WebSocket server ready
+2025-12-08 20:10:19 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:10:19 [info]: 📊 Environment: development
+2025-12-08 20:10:19 [info]: 🔌 WebSocket server ready
+2025-12-08 20:26:04 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:26:04 [info]: 📊 Environment: development
+2025-12-08 20:26:04 [info]: 🔌 WebSocket server ready
+2025-12-08 20:26:11 [info]: 🚀 Server running on http://localhost:3001
+2025-12-08 20:26:11 [info]: 📊 Environment: development
+2025-12-08 20:26:11 [info]: 🔌 WebSocket server ready

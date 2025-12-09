@@ -1,0 +1,1653 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// MODELO TENANT - MULTITENANT CORE
+// ============================================
+
+model Tenant {
+  id        String   @id @default(uuid())
+  nombre    String
+  slug      String   @unique
+  dominio   String?  @unique
+  
+  // Configuración
+  configuracion Json     @default("{}")
+  plan          String   @default("free")
+  activo        Boolean  @default(true)
+  
+  // Límites
+  maxUsuarios   Int      @default(10)
+  maxSucursales Int      @default(1)
+  
+  // Auditoría
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relaciones
+  usuarios      Usuario[]
+  empleados     Empleado[]
+  horarios      Horario[]
+  asistencias   Asistencia[]
+  nominas       Nomina[]
+  ventas        Venta[]
+  productos     Producto[]
+  clientes      Cliente[]
+  categorias    Categoria[]
+  mesas         Mesa[]
+  ingredientes  Ingrediente[]
+  pagos         Pago[]
+  turnos        Turno[]
+  movimientosStock MovimientoStock[]
+  ajustesInventario AjusteInventario[]
+  alertasStock  AlertaStock[]
+  reservas      Reserva[]
+  zonasEntrega  ZonaEntrega[]
+  pedidos       Pedido[]
+  cuentas       Cuenta[]
+  gastos        Gasto[]
+  flujoCaja     FlujoCaja[]
+  presupuestos  Presupuesto[]
+  estacionesCocina EstacionCocina[]
+  ordenesCocina OrdenCocina[]
+  proveedores   Proveedor[]
+  compras       Compra[]
+  // v2.0 - Nuevas relaciones
+  articulos     Articulo[]
+  comprobantes  Comprobante[]
+  aliasArticulos AliasArticulo[]
+  productosMenu ProductoMenu[]
+  configs       TenantConfig[]
+  
+  @@index([slug])
+  @@index([activo])
+  @@map("tenants")
+}
+
+// Configuraciones por tenant (API keys, etc)
+model TenantConfig {
+  id        String   @id @default(uuid())
+  tenantId  String
+  key       String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  
+  @@unique([tenantId, key])
+  @@index([tenantId])
+  @@map("tenant_configs")
+}
+
+// ============================================
+// USUARIOS Y AUTENTICACIÓN
+// ============================================
+
+enum RolUsuario {
+  SUPER_ADMIN
+  ADMIN
+  GERENTE
+  CAJERO
+  MESERO
+  COCINERO
+  CADETE
+}
+
+model Usuario {
+  id        String      @id @default(uuid())
+  tenantId  String
+  
+  email     String
+  password  String
+  nombre    String
+  apellido  String
+  rol       RolUsuario
+  activo    Boolean     @default(true)
+  pin       String?
+  
+  // Password Reset
+  resetToken        String?
+  resetTokenExpiry  DateTime?
+  
+  // Relaciones
+  tenant        Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  empleado      Empleado?
+  ventas        Venta[]
+  turnos        Turno[]
+  refreshTokens RefreshToken[]
+  movimientosStock MovimientoStock[]
+  ajustesInventario AjusteInventario[]
+  mesasAsignadas Mesa[]
+  pedidosAsignados Pedido[]
+  compras       Compra[]
+  // v2.0 - Nuevas relaciones
+  comprobantes  Comprobante[]
+  
+  // Auditoría
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  
+  @@unique([tenantId, email])
+  @@index([tenantId, activo])
+  @@index([tenantId, rol])
+  @@index([resetToken])
+  @@map("usuarios")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  user      Usuario  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([token])
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+// ============================================
+// CLIENTES
+// ============================================
+
+model Cliente {
+  id        String   @id @default(uuid())
+  tenantId  String
+  
+  nombre    String
+  apellido  String?
+  email     String?
+  telefono  String?
+  direccion String?
+  
+  // Programa de puntos
+  puntos    Int      @default(0)
+  nivel     String   @default("bronce")
+  
+  // Relaciones
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  ventas    Venta[]
+  reservas  Reserva[]
+  cuentas   Cuenta[]
+  
+  // Auditoría
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([tenantId])
+  @@index([tenantId, email])
+  @@index([tenantId, telefono])
+  @@map("clientes")
+}
+
+// ============================================
+// EMPLEADOS Y RECURSOS HUMANOS
+// ============================================
+
+enum TipoContrato {
+  TIEMPO_COMPLETO
+  MEDIO_TIEMPO
+  POR_HORAS
+  FREELANCE
+}
+
+model Empleado {
+  id        String   @id @default(uuid())
+  tenantId  String
+  usuarioId String?  @unique
+  
+  // Datos personales
+  nombre    String
+  apellido  String
+  dni       String
+  email     String?
+  telefono  String
+  direccion String?
+  fechaNacimiento DateTime?
+  
+  // Datos laborales
+  puesto    String
+  tipoContrato TipoContrato
+  salario   Decimal
+  fechaIngreso DateTime
+  fechaSalida  DateTime?
+  activo    Boolean  @default(true)
+  
+  // Relaciones
+  tenant    Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  usuario   Usuario?    @relation(fields: [usuarioId], references: [id])
+  horarios  Horario[]
+  asistencias Asistencia[]
+  nominas   Nomina[]
+  
+  // Auditoría
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([tenantId, dni])
+  @@index([tenantId, activo])
+  @@map("empleados")
+}
+
+model Horario {
+  id         String   @id @default(uuid())
+  tenantId   String
+  empleadoId String
+  
+  diaSemana  Int      // 0 = Domingo, 6 = Sábado
+  horaInicio String   // Formato HH:mm
+  horaFin    String   // Formato HH:mm
+  activo     Boolean  @default(true)
+  
+  // Relaciones
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  empleado   Empleado @relation(fields: [empleadoId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([tenantId, empleadoId])
+  @@map("horarios")
+}
+
+enum TipoAsistencia {
+  ENTRADA
+  SALIDA
+  ENTRADA_BREAK
+  SALIDA_BREAK
+}
+
+model Asistencia {
+  id         String   @id @default(uuid())
+  tenantId   String
+  empleadoId String
+  
+  fecha      DateTime
+  tipo       TipoAsistencia
+  hora       DateTime
+  notas      String?
+  
+  // Relaciones
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  empleado   Empleado @relation(fields: [empleadoId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt  DateTime @default(now())
+  
+  @@index([tenantId, empleadoId, fecha])
+  @@map("asistencias")
+}
+
+model Nomina {
+  id         String   @id @default(uuid())
+  tenantId   String
+  empleadoId String
+  
+  periodo    String   // Formato: YYYY-MM
+  salarioBase Decimal
+  bonos      Decimal  @default(0)
+  deducciones Decimal @default(0)
+  horasExtras Decimal @default(0)
+  total      Decimal
+  
+  fechaPago  DateTime?
+  pagado     Boolean  @default(false)
+  notas      String?
+  
+  // Relaciones
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  empleado   Empleado @relation(fields: [empleadoId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@unique([tenantId, empleadoId, periodo])
+  @@index([tenantId, empleadoId])
+  @@map("nominas")
+}
+
+// ============================================
+// PRODUCTOS E INVENTARIO
+// ============================================
+
+model Categoria {
+  id        String     @id @default(uuid())
+  tenantId  String
+  
+  nombre    String
+  orden     Int        @default(0)
+  activo    Boolean    @default(true)
+  
+  // Relaciones
+  tenant    Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  productos Producto[]
+  // v2.0 - Nuevas relaciones
+  productosMenu ProductoMenu[] @relation("CategoriaProductoMenu")
+  
+  // Auditoría
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  
+  @@index([tenantId, activo])
+  @@map("categorias")
+}
+
+model Producto {
+  id          String     @id @default(uuid())
+  tenantId    String
+  categoriaId String?
+  
+  nombre      String
+  descripcion String?
+  precio      Decimal    @db.Decimal(10, 2)
+  costo       Decimal?   @db.Decimal(10, 2)
+  stock       Int        @default(0)
+  stockMinimo Int        @default(0)
+  disponible  Boolean    @default(true)
+  
+  // Modalidades disponibles (JSON array: ["MOSTRADOR", "MESA", "DELIVERY", "ONLINE"])
+  modalidades Json       @default("[\"MOSTRADOR\", \"MESA\", \"DELIVERY\", \"ONLINE\"]")
+  
+  // Producto Intermedio
+  esProductoIntermedio Boolean      @default(false) @map("es_producto_intermedio")
+  rendimiento          Decimal?     @db.Decimal(10, 3)
+  unidadRendimiento    String?      @map("unidad_rendimiento")
+  
+  // Relaciones
+  tenant               Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  categoria            Categoria?   @relation(fields: [categoriaId], references: [id], onDelete: SetNull)
+  itemsVenta           ItemVenta[]
+  recetas              Receta[]
+  ingredienteVinculado Ingrediente?
+  movimientosStock     MovimientoStock[]
+  detallesAjuste       DetalleAjusteInventario[]
+  alertasStock         AlertaStock[]
+  itemsOrdenCocina     ItemOrdenCocina[]
+  
+  // Auditoría
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  @@index([tenantId, disponible])
+  @@index([tenantId, categoriaId])
+  @@index([tenantId, nombre])
+  @@map("productos")
+}
+
+// ============================================
+// INVENTARIO Y MOVIMIENTOS
+// ============================================
+
+enum TipoMovimiento {
+  ENTRADA
+  SALIDA
+  AJUSTE
+  MERMA
+  DEVOLUCION
+  TRANSFERENCIA
+}
+
+enum MotivoMovimiento {
+  COMPRA
+  VENTA
+  AJUSTE_INVENTARIO
+  PRODUCTO_VENCIDO
+  PRODUCTO_DANADO
+  ROBO
+  DONACION
+  PRODUCCION
+  CONSUMO_INTERNO
+  DEVOLUCION_PROVEEDOR
+  DEVOLUCION_CLIENTE
+  TRANSFERENCIA_SUCURSAL
+  OTRO
+}
+
+model MovimientoStock {
+  id          String   @id @default(uuid())
+  tenantId    String
+  productoId  String
+  
+  tipo        TipoMovimiento
+  motivo      MotivoMovimiento
+  cantidad    Decimal  @db.Decimal(10, 3)
+  stockAnterior Decimal @db.Decimal(10, 3)
+  stockNuevo  Decimal  @db.Decimal(10, 3)
+  
+  // Costos
+  costoUnitario Decimal? @db.Decimal(10, 2)
+  costoTotal    Decimal? @db.Decimal(10, 2)
+  
+  // Referencias
+  ventaId     String?
+  compraId    String?
+  usuarioId   String
+  
+  // Detalles
+  notas       String?
+  lote        String?
+  fechaVencimiento DateTime?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  producto    Producto @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  usuario     Usuario  @relation(fields: [usuarioId], references: [id])
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  
+  @@index([tenantId, productoId])
+  @@index([tenantId, tipo])
+  @@index([tenantId, createdAt])
+  @@index([productoId, createdAt])
+  @@map("movimientos_stock")
+}
+
+model AjusteInventario {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  numero      Int
+  fecha       DateTime @default(now())
+  motivo      String
+  observaciones String?
+  
+  usuarioId   String
+  aprobadoPor String?
+  fechaAprobacion DateTime?
+  
+  estado      String   @default("PENDIENTE") // PENDIENTE, APROBADO, RECHAZADO
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  usuario     Usuario  @relation(fields: [usuarioId], references: [id])
+  detalles    DetalleAjusteInventario[]
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, estado])
+  @@index([tenantId, fecha])
+  @@map("ajustes_inventario")
+}
+
+model DetalleAjusteInventario {
+  id          String   @id @default(uuid())
+  ajusteId    String
+  productoId  String
+  
+  stockSistema  Decimal @db.Decimal(10, 3)
+  stockFisico   Decimal @db.Decimal(10, 3)
+  diferencia    Decimal @db.Decimal(10, 3)
+  
+  costoUnitario Decimal? @db.Decimal(10, 2)
+  valorDiferencia Decimal? @db.Decimal(10, 2)
+  
+  motivo      String?
+  
+  // Relaciones
+  ajuste      AjusteInventario @relation(fields: [ajusteId], references: [id], onDelete: Cascade)
+  producto    Producto @relation(fields: [productoId], references: [id])
+  
+  @@index([ajusteId])
+  @@index([productoId])
+  @@map("detalles_ajuste_inventario")
+}
+
+model AlertaStock {
+  id          String   @id @default(uuid())
+  tenantId    String
+  productoId  String
+  
+  tipo        String   // STOCK_BAJO, STOCK_CRITICO, PRODUCTO_VENCIDO, PROXIMO_VENCER
+  mensaje     String
+  nivel       String   @default("MEDIO") // BAJO, MEDIO, ALTO, CRITICO
+  
+  leida       Boolean  @default(false)
+  fechaLeida  DateTime?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  producto    Producto @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  
+  @@index([tenantId, leida])
+  @@index([tenantId, nivel])
+  @@index([productoId])
+  @@map("alertas_stock")
+}
+
+// ============================================
+// VENTAS
+// ============================================
+
+enum EstadoVenta {
+  PENDIENTE
+  CONFIRMADA
+  EN_PREPARACION
+  LISTA
+  ENTREGADA
+  CANCELADA
+}
+
+enum TipoVenta {
+  MOSTRADOR
+  MESA
+  DELIVERY
+  ONLINE
+}
+
+model Venta {
+  id          String      @id @default(uuid())
+  tenantId    String
+  numero      Int
+  clienteId   String?
+  usuarioId   String
+  mesaId      String?
+  
+  tipo        TipoVenta   @default(MOSTRADOR)
+  estado      EstadoVenta @default(PENDIENTE)
+  
+  // Datos del comprador (si no tiene clienteId)
+  compradorNombre   String?
+  compradorTelefono String?
+  direccionEntrega  String?  // Para delivery
+  
+  // Estado de pago
+  estadoPago  String      @default("PENDIENTE") // PENDIENTE, PAGADO, PARCIAL
+  
+  subtotal    Decimal     @db.Decimal(10, 2)
+  descuento   Decimal     @default(0) @db.Decimal(10, 2)
+  propina     Decimal     @default(0) @db.Decimal(10, 2)
+  total       Decimal     @db.Decimal(10, 2)
+  
+  // Relaciones
+  tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  cliente     Cliente?    @relation(fields: [clienteId], references: [id], onDelete: SetNull)
+  usuario     Usuario     @relation(fields: [usuarioId], references: [id])
+  mesa        Mesa?       @relation(fields: [mesaId], references: [id], onDelete: SetNull)
+  items       ItemVenta[]
+  pagos       Pago[]
+  pedido      Pedido?
+  ordenesCocina OrdenCocina[]
+  
+  // Auditoría
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  createdBy   String
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, createdAt])
+  @@index([tenantId, estado])
+  @@index([tenantId, tipo])
+  @@index([tenantId, clienteId])
+  @@map("ventas")
+}
+
+model ItemVenta {
+  id         String   @id @default(uuid())
+  ventaId    String
+  productoId String
+  
+  cantidad   Int
+  precio     Decimal  @db.Decimal(10, 2)
+  subtotal   Decimal  @db.Decimal(10, 2)
+  notas      String?
+  
+  // Relaciones
+  venta      Venta    @relation(fields: [ventaId], references: [id], onDelete: Cascade)
+  producto   Producto @relation(fields: [productoId], references: [id])
+  
+  // Auditoría
+  createdAt  DateTime @default(now())
+  
+  @@index([ventaId])
+  @@index([productoId])
+  @@map("items_venta")
+}
+
+// ============================================
+// PAGOS
+// ============================================
+
+enum MetodoPago {
+  EFECTIVO
+  TARJETA_DEBITO
+  TARJETA_CREDITO
+  TRANSFERENCIA
+  MERCADO_PAGO
+  QR
+  OTRO
+}
+
+enum EstadoPago {
+  PENDIENTE
+  APROBADO
+  RECHAZADO
+  CANCELADO
+}
+
+model Pago {
+  id          String      @id @default(uuid())
+  tenantId    String
+  ventaId     String
+  turnoId     String?
+  
+  metodo      MetodoPago
+  monto       Decimal     @db.Decimal(10, 2)
+  estado      EstadoPago  @default(PENDIENTE)
+  
+  referencia  String?
+  notas       String?
+  
+  // Relaciones
+  tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  venta       Venta       @relation(fields: [ventaId], references: [id], onDelete: Cascade)
+  turno       Turno?      @relation(fields: [turnoId], references: [id], onDelete: SetNull)
+  
+  // Auditoría
+  createdAt   DateTime    @default(now())
+  createdBy   String
+  
+  @@index([tenantId, ventaId])
+  @@index([tenantId, turnoId])
+  @@index([tenantId, createdAt])
+  @@map("pagos")
+}
+
+// ============================================
+// TURNOS Y CAJA
+// ============================================
+
+enum EstadoTurno {
+  ABIERTO
+  CERRADO
+}
+
+model Turno {
+  id              String      @id @default(uuid())
+  tenantId        String
+  usuarioId       String
+  numero          Int
+  
+  estado          EstadoTurno @default(ABIERTO)
+  
+  montoInicial    Decimal     @db.Decimal(10, 2)
+  montoFinal      Decimal?    @db.Decimal(10, 2)
+  
+  totalEfectivo   Decimal     @default(0) @db.Decimal(10, 2)
+  totalTarjeta    Decimal     @default(0) @db.Decimal(10, 2)
+  totalOtros      Decimal     @default(0) @db.Decimal(10, 2)
+  
+  diferencia      Decimal?    @db.Decimal(10, 2)
+  notas           String?
+  
+  // Relaciones
+  tenant          Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  usuario         Usuario     @relation(fields: [usuarioId], references: [id])
+  pagos           Pago[]
+  
+  // Auditoría
+  apertura        DateTime    @default(now())
+  cierre          DateTime?
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, estado])
+  @@index([tenantId, usuarioId])
+  @@index([tenantId, apertura])
+  @@map("turnos")
+}
+
+// ============================================
+// MESAS
+// ============================================
+
+enum EstadoMesa {
+  LIBRE
+  OCUPADA
+  RESERVADA
+}
+
+model Mesa {
+  id        String      @id @default(uuid())
+  tenantId  String
+  
+  numero    Int
+  capacidad Int         @default(4)
+  estado    EstadoMesa  @default(LIBRE)
+  sala      String?
+  
+  // Plano del salón
+  posicionX Int?
+  posicionY Int?
+  forma     String?     @default("CUADRADA") // CUADRADA, RECTANGULAR, CIRCULAR
+  
+  // Asignación
+  meseroId  String?
+  
+  // Relaciones
+  tenant    Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  mesero    Usuario?    @relation(fields: [meseroId], references: [id], onDelete: SetNull)
+  ventas    Venta[]
+  reservas  Reserva[]
+  
+  // Auditoría
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, estado])
+  @@index([meseroId])
+  @@map("mesas")
+}
+
+model Reserva {
+  id          String   @id @default(uuid())
+  tenantId    String
+  mesaId      String
+  clienteId   String?
+  
+  nombreCliente String
+  telefono      String
+  email         String?
+  cantidadPersonas Int
+  
+  fechaReserva  DateTime
+  horaReserva   String
+  duracionEstimada Int @default(120) // minutos
+  
+  estado        String @default("CONFIRMADA") // CONFIRMADA, CANCELADA, COMPLETADA, NO_SHOW
+  notas         String?
+  
+  // Relaciones
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  mesa      Mesa     @relation(fields: [mesaId], references: [id])
+  cliente   Cliente? @relation(fields: [clienteId], references: [id], onDelete: SetNull)
+  
+  // Auditoría
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([tenantId, fechaReserva])
+  @@index([tenantId, estado])
+  @@index([mesaId])
+  @@map("reservas")
+}
+
+// ============================================
+// DELIVERY Y PEDIDOS
+// ============================================
+
+model ZonaEntrega {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  nombre      String
+  descripcion String?
+  costoEnvio  Decimal  @db.Decimal(10, 2)
+  tiempoEstimado Int   // minutos
+  activo      Boolean  @default(true)
+  
+  // Coordenadas (opcional para mapas)
+  coordenadas Json?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  pedidos     Pedido[]
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([tenantId, activo])
+  @@map("zonas_entrega")
+}
+
+enum EstadoPedido {
+  PENDIENTE
+  CONFIRMADO
+  EN_PREPARACION
+  LISTO
+  EN_CAMINO
+  ENTREGADO
+  CANCELADO
+}
+
+model Pedido {
+  id          String   @id @default(uuid())
+  tenantId    String
+  ventaId     String   @unique
+  zonaId      String?
+  cadeteId    String?
+  
+  direccion   String
+  referencia  String?
+  coordenadas Json?
+  
+  costoEnvio  Decimal  @db.Decimal(10, 2)
+  tiempoEstimado Int
+  
+  estado      EstadoPedido @default(PENDIENTE)
+  
+  // Tracking
+  horaAsignacion    DateTime?
+  horaSalida        DateTime?
+  horaEntrega       DateTime?
+  
+  // Relaciones
+  tenant      Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  venta       Venta         @relation(fields: [ventaId], references: [id])
+  zona        ZonaEntrega?  @relation(fields: [zonaId], references: [id], onDelete: SetNull)
+  cadete      Usuario?      @relation(fields: [cadeteId], references: [id], onDelete: SetNull)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([tenantId, estado])
+  @@index([cadeteId])
+  @@index([ventaId])
+  @@map("pedidos")
+}
+
+// ============================================
+// FINANZAS Y CONTABILIDAD
+// ============================================
+
+enum TipoCuenta {
+  POR_COBRAR
+  POR_PAGAR
+}
+
+enum EstadoCuenta {
+  PENDIENTE
+  PARCIAL
+  PAGADA
+  VENCIDA
+  CANCELADA
+}
+
+model Cuenta {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  tipo        TipoCuenta
+  numero      Int
+  
+  // Datos de la cuenta
+  concepto    String
+  monto       Decimal  @db.Decimal(10, 2)
+  saldo       Decimal  @db.Decimal(10, 2)
+  estado      EstadoCuenta @default(PENDIENTE)
+  
+  // Fechas
+  fechaEmision    DateTime @default(now())
+  fechaVencimiento DateTime
+  
+  // Referencias
+  clienteId   String?
+  proveedorId String?
+  ventaId     String?
+  compraId    String?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  cliente     Cliente? @relation(fields: [clienteId], references: [id], onDelete: SetNull)
+  pagos       PagoCuenta[]
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([tenantId, tipo, numero])
+  @@index([tenantId, tipo, estado])
+  @@index([tenantId, fechaVencimiento])
+  @@map("cuentas")
+}
+
+model PagoCuenta {
+  id          String   @id @default(uuid())
+  cuentaId    String
+  
+  monto       Decimal  @db.Decimal(10, 2)
+  metodoPago  MetodoPago
+  referencia  String?
+  notas       String?
+  
+  // Relaciones
+  cuenta      Cuenta   @relation(fields: [cuentaId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  
+  @@index([cuentaId])
+  @@map("pagos_cuenta")
+}
+
+enum TipoGasto {
+  OPERATIVO
+  ADMINISTRATIVO
+  MARKETING
+  MANTENIMIENTO
+  SERVICIOS
+  IMPUESTOS
+  SALARIOS
+  OTRO
+}
+
+model Gasto {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  numero      Int
+  concepto    String
+  descripcion String?
+  tipo        TipoGasto
+  monto       Decimal  @db.Decimal(10, 2)
+  
+  fecha       DateTime @default(now())
+  metodoPago  MetodoPago
+  referencia  String?
+  
+  // Categorización
+  centroCosto String?
+  categoria   String?
+  
+  // Comprobante
+  comprobante String?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, tipo])
+  @@index([tenantId, fecha])
+  @@map("gastos")
+}
+
+model FlujoCaja {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  fecha       DateTime @default(now())
+  concepto    String
+  tipo        String   // INGRESO, EGRESO
+  categoria   String
+  monto       Decimal  @db.Decimal(10, 2)
+  
+  metodoPago  MetodoPago?
+  referencia  String?
+  
+  // Referencias
+  ventaId     String?
+  gastoId     String?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  
+  @@index([tenantId, fecha])
+  @@index([tenantId, tipo])
+  @@map("flujo_caja")
+}
+
+model Presupuesto {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  nombre      String
+  periodo     String   // YYYY-MM
+  tipo        String   // INGRESOS, GASTOS
+  categoria   String
+  
+  montoPresupuestado Decimal @db.Decimal(10, 2)
+  montoEjecutado     Decimal @db.Decimal(10, 2) @default(0)
+  
+  activo      Boolean  @default(true)
+  notas       String?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([tenantId, periodo, tipo, categoria])
+  @@index([tenantId, periodo])
+  @@map("presupuestos")
+}
+
+// ============================================
+// INGREDIENTES Y RECETAS
+// ============================================
+
+enum UnidadMedida {
+  KG
+  GRAMO
+  LITRO
+  MILILITRO
+  UNIDAD
+  DOCENA
+  CAJA
+  BANDEJA
+  PAQUETE
+  BOLSA
+  LATA
+  BOTELLA
+  SOBRE
+  MAPLE
+}
+
+enum CategoriaIngrediente {
+  ALIMENTOS
+  BEBIDAS
+  LIMPIEZA
+  DESCARTABLES
+  ARTICULOS_COCINA
+  VARIOS
+}
+
+model Ingrediente {
+  id          String       @id @default(uuid())
+  tenantId    String
+  
+  nombre            String
+  descripcion       String?
+  categoria         CategoriaIngrediente
+  costoPromedio     Decimal?     @default(0) @db.Decimal(10, 2) @map("costo_promedio")
+  costoUltimo       Decimal?     @default(0) @db.Decimal(10, 2) @map("costo_ultimo")
+  unidad            UnidadMedida
+  esCompuesto       Boolean      @default(false) @map("es_compuesto")
+  stockActual       Decimal      @default(0) @db.Decimal(10, 3) @map("stock_actual")
+  stockMinimo       Decimal      @default(0) @db.Decimal(10, 3) @map("stock_minimo")
+  activo            Boolean      @default(true)
+  
+  // Producto Intermedio Vinculado
+  productoVinculadoId String?   @unique @map("producto_vinculado_id")
+  productoVinculado   Producto? @relation(fields: [productoVinculadoId], references: [id], onDelete: SetNull)
+  
+  // Relaciones
+  tenant                Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  recetas               Receta[]
+  recetasIngrediente    RecetaIngrediente[]   @relation("IngredientePrincipal")
+  componenteDeRecetas   RecetaIngrediente[]   @relation("IngredienteComponente")
+  itemsCompra           ItemCompra[]
+  
+  // Auditoría
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  @@unique([tenantId, nombre])
+  @@index([tenantId, activo])
+  @@map("ingredientes")
+}
+
+model RecetaIngrediente {
+  id                      String       @id @default(uuid())
+  ingredienteId           String       @map("ingrediente_id")
+  ingredienteComponenteId String       @map("ingrediente_componente_id")
+  cantidad                Decimal      @db.Decimal(10, 3)
+  unidad                  UnidadMedida
+  
+  // Relaciones
+  ingrediente          Ingrediente @relation("IngredientePrincipal", fields: [ingredienteId], references: [id], onDelete: Cascade)
+  ingredienteComponente Ingrediente @relation("IngredienteComponente", fields: [ingredienteComponenteId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([ingredienteId, ingredienteComponenteId])
+  @@index([ingredienteId])
+  @@map("recetas_ingredientes")
+}
+
+model Receta {
+  id            String      @id @default(uuid())
+  productoId    String
+  ingredienteId String
+  
+  cantidad      Decimal     @db.Decimal(10, 3)
+  unidad        UnidadMedida
+  
+  // Relaciones
+  producto      Producto    @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  ingrediente   Ingrediente @relation(fields: [ingredienteId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  @@unique([productoId, ingredienteId])
+  @@index([productoId])
+  @@index([ingredienteId])
+  @@map("recetas")
+}
+
+// ============================================
+// MÓDULO COCINA (KDS - Kitchen Display System)
+// ============================================
+
+enum EstadoOrdenCocina {
+  PENDIENTE
+  EN_PREPARACION
+  LISTO
+  ENTREGADO
+  CANCELADO
+}
+
+enum PrioridadOrden {
+  BAJA
+  NORMAL
+  ALTA
+  URGENTE
+}
+
+model EstacionCocina {
+  id          String   @id @default(uuid())
+  tenantId    String
+  nombre      String
+  descripcion String?
+  color       String?  @default("#3B82F6")
+  orden       Int      @default(0)
+  activo      Boolean  @default(true)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  ordenes     OrdenCocina[]
+  
+  @@index([tenantId])
+  @@map("estaciones_cocina")
+}
+
+model OrdenCocina {
+  id                String              @id @default(uuid())
+  tenantId          String
+  numero            Int
+  ventaId           String
+  estacionId        String?
+  
+  // Estado y prioridad
+  estado            EstadoOrdenCocina   @default(PENDIENTE)
+  prioridad         PrioridadOrden      @default(NORMAL)
+  
+  // Tiempos
+  tiempoEstimado    Int?                // En minutos
+  tiempoInicio      DateTime?
+  tiempoFin         DateTime?
+  tiempoTotal       Int?                // En minutos
+  
+  // Información adicional
+  notas             String?
+  impreso           Boolean             @default(false)
+  notificado        Boolean             @default(false)
+  
+  // Auditoría
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  createdBy         String?
+  
+  // Relaciones
+  tenant            Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  venta             Venta               @relation(fields: [ventaId], references: [id], onDelete: Cascade)
+  estacion          EstacionCocina?     @relation(fields: [estacionId], references: [id], onDelete: SetNull)
+  items             ItemOrdenCocina[]
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId])
+  @@index([ventaId])
+  @@index([estacionId])
+  @@index([estado])
+  @@map("ordenes_cocina")
+}
+
+model ItemOrdenCocina {
+  id          String   @id @default(uuid())
+  ordenId     String
+  productoId  String
+  cantidad    Int
+  notas       String?
+  completado  Boolean  @default(false)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relaciones
+  orden       OrdenCocina @relation(fields: [ordenId], references: [id], onDelete: Cascade)
+  producto    Producto    @relation(fields: [productoId], references: [id])
+  
+  @@index([ordenId])
+  @@index([productoId])
+  @@map("items_orden_cocina")
+}
+
+// ============================================
+// COMPRAS Y PROVEEDORES (ADMINISTRACIÓN)
+// ============================================
+
+model Proveedor {
+  id          String   @id @default(uuid())
+  tenantId    String
+  
+  nombre      String
+  razonSocial String?
+  cuit        String?
+  telefono    String?
+  email       String?
+  direccion   String?
+  contacto    String?
+  
+  activo      Boolean  @default(true)
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  compras     Compra[]
+  // v2.0 - Nuevas relaciones
+  comprobantes Comprobante[]
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([tenantId, nombre])
+  @@index([tenantId, activo])
+  @@map("proveedores")
+}
+
+model Compra {
+  id              String   @id @default(uuid())
+  tenantId        String
+  proveedorId     String?  // Opcional para compras sueltas
+  usuarioId       String
+  
+  numero          Int
+  numeroFactura   String?
+  fechaCompra     DateTime @default(now())
+  fechaEntrega    DateTime?
+  
+  subtotal        Decimal  @db.Decimal(10, 2)
+  impuestos       Decimal  @default(0) @db.Decimal(10, 2)
+  descuentos      Decimal  @default(0) @db.Decimal(10, 2)
+  total           Decimal  @db.Decimal(10, 2)
+  
+  estado          String   @default("PENDIENTE") // PENDIENTE, RECIBIDA, PARCIAL, CANCELADA
+  
+  observaciones   String?
+  
+  // Relaciones
+  tenant          Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  proveedor       Proveedor?   @relation(fields: [proveedorId], references: [id])
+  usuario         Usuario      @relation(fields: [usuarioId], references: [id])
+  items           ItemCompra[]
+  
+  // Auditoría
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  createdBy       String
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, fechaCompra])
+  @@index([tenantId, estado])
+  @@index([proveedorId])
+  @@map("compras")
+}
+
+model ItemCompra {
+  id                String      @id @default(uuid())
+  compraId          String
+  ingredienteId     String
+  
+  marca             String?
+  cantidadComprada  Decimal     @db.Decimal(10, 3)
+  unidad            UnidadMedida
+  precioUnitario    Decimal     @db.Decimal(10, 2)
+  precioTotal       Decimal     @db.Decimal(10, 2)
+  
+  cantidadRecibida  Decimal?    @db.Decimal(10, 3)
+  fechaRecepcion    DateTime?
+  
+  observaciones     String?
+  
+  // Relaciones
+  compra            Compra      @relation(fields: [compraId], references: [id], onDelete: Cascade)
+  ingrediente       Ingrediente @relation(fields: [ingredienteId], references: [id])
+  
+  @@index([compraId])
+  @@index([ingredienteId])
+  @@map("items_compra")
+}
+
+// ============================================
+// GASTRODASH v2.0 - SISTEMA DE ARTÍCULOS UNIVERSAL
+// ============================================
+
+enum TipoArticulo {
+  INGREDIENTE       // Se transforma en cocina (harina, carne, verduras)
+  PRODUCTO_DIRECTO  // Se vende tal cual (vinos, gaseosas, cervezas)
+  INSUMO            // Se consume internamente (detergente, bandejas)
+  GASTO_SERVICIO    // No tiene stock (luz, agua, internet, alquiler)
+}
+
+enum CategoriaArticulo {
+  ALIMENTOS
+  BEBIDAS_ALCOHOLICAS
+  BEBIDAS_SIN_ALCOHOL
+  LIMPIEZA
+  DESCARTABLES
+  UTENSILIOS
+  SERVICIOS
+  ALQUILER
+  IMPUESTOS
+  SUELDOS
+  OTROS
+}
+
+enum UbicacionStock {
+  COCINA
+  BAR
+  DEPOSITO
+  HELADERA
+  FREEZER
+  MOSTRADOR
+}
+
+enum TipoComprobante {
+  FACTURA_A
+  FACTURA_B
+  FACTURA_C
+  TICKET
+  RECIBO
+  REMITO
+  GASTO_INTERNO
+}
+
+enum EstadoComprobante {
+  PENDIENTE
+  RECIBIDO
+  PARCIAL
+  ANULADO
+}
+
+enum TipoProductoMenu {
+  ELABORADO   // Tiene receta con ingredientes
+  DIRECTO     // Se vincula directo a un artículo de stock
+}
+
+// ============================================
+// MODELO ARTÍCULO UNIVERSAL
+// ============================================
+
+model Articulo {
+  id                  String   @id @default(uuid())
+  tenantId            String
+  
+  // Identificación
+  nombre              String
+  descripcion         String?
+  codigoInterno       String?
+  codigoBarras        String?
+  
+  // Clasificación
+  tipo                TipoArticulo
+  categoria           CategoriaArticulo
+  
+  // Stock
+  afectaStock         Boolean  @default(true)
+  stockActual         Decimal  @default(0) @db.Decimal(10, 3)
+  stockMinimo         Decimal  @default(0) @db.Decimal(10, 3)
+  unidad              UnidadMedida
+  ubicacion           UbicacionStock?
+  
+  // Costos
+  costoPromedio       Decimal  @default(0) @db.Decimal(10, 2)
+  costoUltimo         Decimal  @default(0) @db.Decimal(10, 2)
+  
+  // Venta (solo si aplica)
+  seVende             Boolean  @default(false)
+  precioVenta         Decimal? @db.Decimal(10, 2)
+  
+  // Marca (solo para PRODUCTO_DIRECTO)
+  marca               String?
+  esGenerico          Boolean  @default(true)
+  articuloGenericoId  String?
+  
+  // Estado
+  activo              Boolean  @default(true)
+  
+  // Relaciones
+  tenant              Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  articuloGenerico    Articulo? @relation("ArticuloMarca", fields: [articuloGenericoId], references: [id])
+  variantes           Articulo[] @relation("ArticuloMarca")
+  itemsComprobante    ItemComprobante[]
+  recetaItems         RecetaArticulo[]
+  productosDirectos   ProductoMenu[] @relation("ArticuloProducto")
+  aliasArticulos      AliasArticulo[]
+  
+  // Auditoría
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  createdBy           String?
+  
+  @@unique([tenantId, nombre, marca])
+  @@index([tenantId, tipo])
+  @@index([tenantId, categoria])
+  @@index([tenantId, activo])
+  @@index([tenantId, ubicacion])
+  @@map("articulos")
+}
+
+// ============================================
+// MODELO COMPROBANTE UNIVERSAL
+// ============================================
+
+model Comprobante {
+  id                  String   @id @default(uuid())
+  tenantId            String
+  numero              Int
+  
+  // Tipo de comprobante
+  tipoComprobante     TipoComprobante
+  
+  // Datos del comprobante
+  proveedorId         String?
+  fecha               DateTime @default(now())
+  numeroComprobante   String?  // Número de factura del proveedor
+  
+  // Montos
+  subtotal            Decimal  @db.Decimal(10, 2)
+  impuestos           Decimal  @default(0) @db.Decimal(10, 2)
+  descuentos          Decimal  @default(0) @db.Decimal(10, 2)
+  total               Decimal  @db.Decimal(10, 2)
+  
+  // Estado
+  estado              EstadoComprobante @default(PENDIENTE)
+  
+  // OCR
+  imagenUrl           String?
+  ocrProcesado        Boolean  @default(false)
+  ocrConfianza        Decimal? @db.Decimal(5, 2)
+  ocrDatosRaw         Json?
+  
+  // Observaciones
+  observaciones       String?
+  
+  // Relaciones
+  tenant              Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  proveedor           Proveedor?   @relation(fields: [proveedorId], references: [id])
+  items               ItemComprobante[]
+  usuarioId           String
+  usuario             Usuario      @relation(fields: [usuarioId], references: [id])
+  
+  // Auditoría
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  createdBy           String
+  
+  @@unique([tenantId, numero])
+  @@index([tenantId, fecha])
+  @@index([tenantId, estado])
+  @@index([tenantId, tipoComprobante])
+  @@index([proveedorId])
+  @@map("comprobantes")
+}
+
+model ItemComprobante {
+  id                  String   @id @default(uuid())
+  comprobanteId       String
+  articuloId          String?  // Puede ser null si es item nuevo sin clasificar
+  
+  // Datos del item
+  descripcionOriginal String   // Texto original del comprobante/OCR
+  cantidad            Decimal  @db.Decimal(10, 3)
+  unidad              UnidadMedida
+  precioUnitario      Decimal  @db.Decimal(10, 2)
+  precioTotal         Decimal  @db.Decimal(10, 2)
+  
+  // Recepción
+  cantidadRecibida    Decimal? @db.Decimal(10, 3)
+  fechaRecepcion      DateTime?
+  
+  // Estado
+  estado              String   @default("PENDIENTE") // PENDIENTE, RECIBIDO
+  
+  // Observaciones
+  observaciones       String?
+  
+  // Relaciones
+  comprobante         Comprobante @relation(fields: [comprobanteId], references: [id], onDelete: Cascade)
+  articulo            Articulo?   @relation(fields: [articuloId], references: [id])
+  
+  @@index([comprobanteId])
+  @@index([articuloId])
+  @@map("items_comprobante")
+}
+
+// ============================================
+// PRODUCTO DEL MENÚ v2.0
+// ============================================
+
+model ProductoMenu {
+  id                  String   @id @default(uuid())
+  tenantId            String
+  
+  // Identificación
+  nombre              String
+  descripcion         String?
+  imagen              String?
+  
+  // Clasificación
+  categoriaId         String?
+  
+  // Tipo de producto
+  tipoProducto        TipoProductoMenu @default(ELABORADO)
+  
+  // Si es DIRECTO - vinculado a artículo
+  articuloId          String?
+  cantidadPorUnidad   Decimal? @db.Decimal(10, 3) // Ej: 150ml para copa de vino
+  
+  // Precio y Costo
+  precio              Decimal  @db.Decimal(10, 2)
+  costo               Decimal  @default(0) @db.Decimal(10, 2) // Calculado
+  margen              Decimal  @default(0) @db.Decimal(10, 2) // Calculado
+  
+  // Estado
+  disponible          Boolean  @default(true)
+  tiempoPreparacion   Int?     // Minutos, solo para ELABORADO
+  
+  // Modalidades
+  modalidades         Json     @default("[\"MOSTRADOR\", \"MESA\", \"DELIVERY\", \"ONLINE\"]")
+  
+  // Relaciones
+  tenant              Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  categoria           Categoria?   @relation("CategoriaProductoMenu", fields: [categoriaId], references: [id], onDelete: SetNull)
+  articulo            Articulo?    @relation("ArticuloProducto", fields: [articuloId], references: [id])
+  receta              RecetaArticulo[]
+  
+  // Auditoría
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  @@unique([tenantId, nombre])
+  @@index([tenantId, disponible])
+  @@index([tenantId, categoriaId])
+  @@index([tenantId, tipoProducto])
+  @@map("productos_menu")
+}
+
+// ============================================
+// RECETA CON ARTÍCULOS
+// ============================================
+
+model RecetaArticulo {
+  id            String      @id @default(uuid())
+  productoId    String
+  articuloId    String
+  
+  cantidad      Decimal     @db.Decimal(10, 3)
+  unidad        UnidadMedida
+  
+  // Relaciones
+  producto      ProductoMenu @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  articulo      Articulo     @relation(fields: [articuloId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  @@unique([productoId, articuloId])
+  @@index([productoId])
+  @@index([articuloId])
+  @@map("recetas_articulo")
+}
+
+// ============================================
+// ALIAS DE ARTÍCULOS (para OCR)
+// ============================================
+
+model AliasArticulo {
+  id          String   @id @default(uuid())
+  tenantId    String
+  articuloId  String
+  
+  alias       String   // Nombre como aparece en facturas
+  
+  // Relaciones
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  articulo    Articulo @relation(fields: [articuloId], references: [id], onDelete: Cascade)
+  
+  // Auditoría
+  createdAt   DateTime @default(now())
+  
+  @@unique([tenantId, alias])
+  @@index([tenantId])
+  @@index([articuloId])
+  @@map("alias_articulos")
+}
